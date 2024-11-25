@@ -21,9 +21,6 @@ public class App {
                 case 2:     
                     escogerNave();
                     break;
-                case 3;
-                    
-                    break;
                 default:
                     break;
             }
@@ -45,11 +42,7 @@ public class App {
 
 
     public static void escogerPlaneta() {
-            do{
-                int opcion; 
-            planetasDisponibles();
-            opcion = scanner.nextInt();
-            }
+        
     }
 
     public static void escogerNave() {
