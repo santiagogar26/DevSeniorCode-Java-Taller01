@@ -32,12 +32,12 @@ public class App {
    }
     
     public static void menu() {
-        System.out.println("/n¡Bienvenido al menú principal");
+        System.out.println("¡Bienvenido al menú principal");
         System.out.println("1. Escoge tu planeta de destino");
         System.out.println("2. Simular un viaje");
         System.out.println("3. Datos de planetas");
         System.out.println("4. Salir");
-        System.out.println("/nElige la opción que prefieras");  
+        System.out.println("Elige la opción que prefieras");  
    }
 
 
