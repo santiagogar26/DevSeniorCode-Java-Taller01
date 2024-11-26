@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
@@ -76,4 +77,34 @@ public class App {
         System.out.println("Las naves disponibles son: " + navesEspaciales);
     }
 
+    //Evento aleatorio durante el viaje 
+    public static void generarEventoAleatorio() {
+        Random random = new Random();
+        int probabilidadEvento = random.nextInt(100);
+        if (probabilidadEvento < 20) { // 20% de probabiliadad de un evento
+            Evento evento = new Evento("Tormenta solar");
+            System.out.println("¡Evento inesperado! " + evento.descripcion);
+            
+        }
+    }
+
+    //Mostrar la barra de progreso del viaje
+    /**
+     * @param distanciaRecorrida
+     * @param distanciaTotal
+     */
+    public static void mostrarProgreso(double distanciaRecorrida, double distanciaTotal) {
+        int porcentaje = (int) ((distanciaRecorrida / distanciaTotal) * 100);
+        StringBuilder barra = new StringBuilder();
+        for (int i = 0; i < porcentaje; i++) {
+            barra.append('█');  
+                    
+    }
+    barra.append('>');
+    for (int i = porcentaje; i < 100; i++) {
+        barra.append(' ');
+    }
+    System.out.print("\r" + barra.toString()+ " " + porcentaje + "%");
+    System.out.flush();
+}
 }   
