@@ -33,7 +33,7 @@ public class App {
     
     public static void menu() {
         System.out.println("¡Bienvenido al menú principal");
-        System.out.println("1. Escoge tu planeta de destino");
+        System.out.println("1. Seleccione tu planeta de destino");
         System.out.println("2. Simular un viaje");
         System.out.println("3. Datos de planetas");
         System.out.println("4. Salir");
@@ -42,8 +42,25 @@ public class App {
 
 
 
-    public static void escogerPlaneta() {
+    public static int escogerPlaneta() {
+        System.out.println("Seleccione tu planeta de destino");
+        //Opciones planetas
+        for (int i = 0; i < planetas.length; i++) {
+            System.out.println((i + 1) + ". " + planetas[i] + " (Distancia: " + distancias[i] + " UA)");
+        }
         
+        // seleccion de planeta
+        System.out.println("Ingrese el numero del planeta");
+        Scanner scanner = new Scanner(System.in);
+        int opcion = scanner.nextInt();
+
+        //validador entrada usuario
+        while (opcion < 1 || opcion > planetas.length) {
+            System.out.println("Opción inválida. Ingrese un número entre 1 y " + planetas.length);
+            opcion = scanner.nextInt();    
+        }     
+        
+        return opcion - 1;
     }
 
     public static void escogerNave() {
