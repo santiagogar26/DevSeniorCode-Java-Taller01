@@ -63,8 +63,23 @@ public class App {
         return opcion - 1;
     }
 
-    public static void escogerNave() {
-        System.out.println();
+    public static int escogerNave() {
+        System.out.println("Seleccion nave espacial");
+
+        for (int i =0; i < navesEspaciales.length; i++) {
+            System.out.println((i + 1) + ". " + navesEspaciales[i]);
+        }
+        //seleccion de planeta
+        System.out.println("Ingrese el número de la nave: "); 
+        Scanner scanner = new Scanner(System.in); 
+        int opcion = scanner.nextInt(); 
+        
+        //validador entrada usuario 
+        while (opcion < 1 || opcion > navesEspaciales.length) { 
+            System.out.println("Opción inválida. Ingrese un número entre 1 y " + navesEspaciales.length); 
+            opcion = scanner.nextInt();
+        }
+        return opcion - 1;
    }
 
     public static void calcularRecursos() {
