@@ -51,7 +51,7 @@ public class App {
         System.out.println("Seleccione tu planeta de destino");
         //Opciones planetas
         for (int i = 0; i < planetas.length; i++) {
-            System.out.println((i + 1) + ". " + planetas[i] + " (Distancia: " + distancias[i] + " UA)");
+            System.out.println((i + 1) + ". " + planetas[i] + " (Distancia: " + distancias[i] + " Tiempo en días: " + tiempoDeViaje[i]);
         }
         
         // seleccion de planeta
@@ -113,7 +113,7 @@ public class App {
     }   
 
     public static void monitoreador() { 
-        System.out.println( "---Incializando viaje---");
+        System.out.println( "---Inicializando viaje---");
         Random random = new Random();
         for(int progreso = 0; progreso <= 100; progreso+=10){
             System.out.println("Progreso de tu viaje: " + progreso);    
@@ -147,49 +147,4 @@ public class App {
         System.out.println("El combustible necesario es de: " + combustibleRequerido + " unidades");
         System.out.println("La comida necesaria: " + comidaNecesaria + " raciones");
     }
-
-
-
-   //metodos auxiliares
-
-    public static void imprimirDatoPlaneta(int posicion) {
-        System.out.println("El planeta " + planetas[posicion] + "y está a una distancia de " + distancias[posicion]);
-    }
-
-    public static void main() {
-        for (int i = 0; i < planetas.length; i++){
-            imprimirDatoPlaneta(i);    
-        }  
-    }
-
-    //Evento aleatorio durante el viaje 
-    public static void generarEventoAleatorio() {
-        Random random = new Random();
-        int probabilidadEvento = random.nextInt(100);
-        if (probabilidadEvento < 20) { // 20% de probabiliadad de un evento
-            Evento evento = new Evento("Tormenta solar");
-            System.out.println("¡Evento inesperado! " + evento.descripcion);
-            
-        }
-    }
-
-    //Mostrar la barra de progreso del viaje
-    /**
-     * @param distanciaRecorrida
-     * @param distanciaTotal
-     */
-    public static void mostrarProgreso(double distanciaRecorrida, double distanciaTotal) {
-        int porcentaje = (int) ((distanciaRecorrida / distanciaTotal) * 100);
-        StringBuilder barra = new StringBuilder();
-        for (int i = 0; i < porcentaje; i++) {
-            barra.append('█');  
-                    
-    }
-    barra.append('>');
-    for (int i = porcentaje; i <= 100; i++) {
-        barra.append(' ');
-    }
-    System.out.print("\r" + barra.toString()+ " " + porcentaje + "%");
-    System.out.flush();
-}
 }   
