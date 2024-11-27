@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 public class App {
@@ -33,7 +32,7 @@ public class App {
     
     public static void menu() {
         System.out.println("¡Bienvenido al menú principal");
-        System.out.println("1. Seleccione tu planeta de destino");
+        System.out.println("1. Escoge tu planeta de destino");
         System.out.println("2. Simular un viaje");
         System.out.println("3. Datos de planetas");
         System.out.println("4. Salir");
@@ -42,44 +41,13 @@ public class App {
 
 
 
-    public static int escogerPlaneta() {
-        System.out.println("Seleccione tu planeta de destino");
-        //Opciones planetas
-        for (int i = 0; i < planetas.length; i++) {
-            System.out.println((i + 1) + ". " + planetas[i] + " (Distancia: " + distancias[i] + " UA)");
-        }
+    public static void escogerPlaneta() {
+        System.out.println();  
         
-        // seleccion de planeta
-        System.out.println("Ingrese el numero del planeta");
-        Scanner scanner = new Scanner(System.in);
-        int opcion = scanner.nextInt();
-
-        //validador entrada usuario
-        while (opcion < 1 || opcion > planetas.length) {
-            System.out.println("Opción inválida. Ingrese un número entre 1 y " + planetas.length);
-            opcion = scanner.nextInt();    
-        }     
-        
-        return opcion - 1;
     }
 
-    public static int escogerNave() {
-        System.out.println("Seleccion nave espacial");
-
-        for (int i =0; i < navesEspaciales.length; i++) {
-            System.out.println((i + 1) + ". " + navesEspaciales[i]);
-        }
-        //seleccion de planeta
-        System.out.println("Ingrese el número de la nave: "); 
-        Scanner scanner = new Scanner(System.in); 
-        int opcion = scanner.nextInt(); 
+    public static void escogerNave() {
         
-        //validador entrada usuario 
-        while (opcion < 1 || opcion > navesEspaciales.length) { 
-            System.out.println("Opción inválida. Ingrese un número entre 1 y " + navesEspaciales.length); 
-            opcion = scanner.nextInt();
-        }
-        return opcion - 1;
    }
 
     public static void calcularRecursos() {
@@ -109,34 +77,4 @@ public class App {
         System.out.println("Las naves disponibles son: " + navesEspaciales);
     }
 
-    //Evento aleatorio durante el viaje 
-    public static void generarEventoAleatorio() {
-        Random random = new Random();
-        int probabilidadEvento = random.nextInt(100);
-        if (probabilidadEvento < 20) { // 20% de probabiliadad de un evento
-            Evento evento = new Evento("Tormenta solar");
-            System.out.println("¡Evento inesperado! " + evento.descripcion);
-            
-        }
-    }
-
-    //Mostrar la barra de progreso del viaje
-    /**
-     * @param distanciaRecorrida
-     * @param distanciaTotal
-     */
-    public static void mostrarProgreso(double distanciaRecorrida, double distanciaTotal) {
-        int porcentaje = (int) ((distanciaRecorrida / distanciaTotal) * 100);
-        StringBuilder barra = new StringBuilder();
-        for (int i = 0; i < porcentaje; i++) {
-            barra.append('█');  
-                    
-    }
-    barra.append('>');
-    for (int i = porcentaje; i < 100; i++) {
-        barra.append(' ');
-    }
-    System.out.print("\r" + barra.toString()+ " " + porcentaje + "%");
-    System.out.flush();
-}
 }   
