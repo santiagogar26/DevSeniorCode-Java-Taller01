@@ -8,6 +8,8 @@ public class App {
     static double[] distancias = {77.0, 61.0, 54.6, 965.0, 1256.0};
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
+    static String opcionPlaneta;
+    static String opcionNave;
 
     public static void main(String[] args) throws Exception {
 
@@ -22,25 +24,28 @@ public class App {
                 case 2:     
                     escogerNave();
                     break;
+                case 3:
+                    monitoreador();
+                    break;
+                case 4:
+                    simularViaje();
+                    break;
                 default:
                     break;
             }
-
-
-        }while(opcion !=4);
+        }while(opcion !=5);
         
    }
     
     public static void menu() {
-        System.out.println("¡Bienvenido al menú principal");
-        System.out.println("1. Seleccione tu planeta de destino");
-        System.out.println("2. Simular un viaje");
-        System.out.println("3. Datos de planetas");
-        System.out.println("4. Salir");
-        System.out.println("Elige la opción que prefieras");  
+        System.out.println("¡Bienvenido al menú, continua con los pasos!");
+        System.out.println("1. Seleccione un planeta de destino");
+        System.out.println("2. Seleccione la nave espacial ");
+        System.out.println("3. Monitoreo del viaje");
+        System.out.println("4. Simular un viaje");
+        System.out.println("5. Salir");
+        System.out.println("Elige una opción que prefieras");  
    }
-
-
 
     public static int escogerPlaneta() {
         System.out.println("Seleccione tu planeta de destino");
@@ -58,8 +63,9 @@ public class App {
         while (opcion < 1 || opcion > planetas.length) {
             System.out.println("Opción inválida. Ingrese un número entre 1 y " + planetas.length);
             opcion = scanner.nextInt();    
+        }if (opcion <= 5){
+            System.out.println("Has elegido el planeta: " + opcion + ".");
         }     
-        
         return opcion - 1;
     }
 
@@ -78,13 +84,69 @@ public class App {
         while (opcion < 1 || opcion > navesEspaciales.length) { 
             System.out.println("Opción inválida. Ingrese un número entre 1 y " + navesEspaciales.length); 
             opcion = scanner.nextInt();
+        } if (opcion <= 3){
+            System.out.println("Genial, elegiste la nave número: " + opcion +".");
         }
         return opcion - 1;
    }
 
-    public static void calcularRecursos() {
-    
-   }
+    public static void simularViaje() {
+        System.out.println("Elige una de estas opciones: ");
+        System.out.println("1. Elegir planeta");
+        System.out.println("2. Elegir Nave");
+        System.out.println("3. Calcular recursos");
+
+        int opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    escogerPlaneta();
+                    break;
+                case 2:
+                    escogerNave();
+                    break;
+                case 3:
+                    break;
+
+                default: System.out.println("Opcion no valida, intenta de nuevo.");
+                    break;
+            }    
+    }   
+
+    public static void monitoreador() { 
+        System.out.println( "---Incializando viaje---");
+        Random random = new Random();
+        for(int progreso = 0; progreso <= 100; progreso+=10){
+            System.out.println("Progreso de tu viaje: " + progreso);    
+            if (progreso == 50) {
+                System.out.println("Mitad del camino alcanzado");
+            }
+            if (random.nextInt(10) < 3) {
+                System.out.println("¡Evento inesperado! Gestionando ajustes...");
+            } 
+            try { Thread.sleep(500);
+            }catch(InterruptedException e){
+                System.out.println("Error, imposible simular.");
+            } 
+        }
+        System.out.println("Llegaste a tu destino, magnifico!");
+    }
+
+
+    public static void calcularRecursos(int distancias) {
+        
+        double combustiblePorKilometro = 11_000;
+        int alimentoPorDia = 3;
+        int kilometrosPorDia = 66_666;
+
+        double combustibleRequerido = distancias * combustiblePorKilometro;
+        int diasDeVuelo = distancias / kilometrosPorDia;
+        int comidaNecesaria = diasDeVuelo * alimentoPorDia;
+
+        System.out.println("Lo simulación del viaje fue: ");
+        System.out.println("La duración del viaje es de: " + diasDeVuelo + " días");
+        System.out.println("El combustible necesario es de: " + combustibleRequerido + " unidades");
+        System.out.println("La comida necesaria: " + comidaNecesaria + " raciones");
+    }
 
 
 
@@ -98,15 +160,6 @@ public class App {
         for (int i = 0; i < planetas.length; i++){
             imprimirDatoPlaneta(i);    
         }  
-    }
-
-    public static void planetasDisponibles() {
-        System.out.println("Los planetas con disponibilidad son: " + planetas);
-    }
-
-
-    public static void imprimirNaves() {
-        System.out.println("Las naves disponibles son: " + navesEspaciales);
     }
 
     //Evento aleatorio durante el viaje 
@@ -133,7 +186,7 @@ public class App {
                     
     }
     barra.append('>');
-    for (int i = porcentaje; i < 100; i++) {
+    for (int i = porcentaje; i <= 100; i++) {
         barra.append(' ');
     }
     System.out.print("\r" + barra.toString()+ " " + porcentaje + "%");
