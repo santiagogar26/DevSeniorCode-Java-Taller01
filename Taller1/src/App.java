@@ -7,9 +7,14 @@ public class App {
     static String[] planetas = {"Mercurio", "Venus", "Marte", "Jupiter", "Saturno"};
     static double[] distancias = {77.0, 61.0, 54.6, 965.0, 1256.0};
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
+    static double[] velocidades = {140, 110, 128};
+    static double[] consumoCombustible = {14000.0, 110000.0, 128000.0};
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
     static String opcionPlaneta;
     static String opcionNave;
+
+    static String[] naveSelecciona;
+    static int planetaSeleccionado; //este indica la posicion del planeta seleccionado 
 
     public static void main(String[] args) throws Exception {
 
