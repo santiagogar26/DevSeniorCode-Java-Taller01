@@ -13,7 +13,7 @@ public class App {
     static String opcionPlaneta;
     static String opcionNave;
 
-    static String[] naveSelecciona;
+    static String naveopcion;
     static int planetaSeleccionado; //este indica la posicion del planeta seleccionado 
 
     public static void main(String[] args) throws Exception {
@@ -74,11 +74,11 @@ public class App {
         return opcion - 1;
     }
 
-    public static int escogerNave() {
+    public static int escogerNave(){
         System.out.println("Seleccion nave espacial");
 
         for (int i =0; i < navesEspaciales.length; i++) {
-            System.out.println((i + 1) + ". " + navesEspaciales[i]);
+            System.out.println("Nave " + (i + 1) + ". " + navesEspaciales[i] + "- Velocidad: " + velocidades[i]);
         }
         //seleccion de planeta
         System.out.println("Ingrese el número de la nave: "); 
@@ -90,7 +90,8 @@ public class App {
             System.out.println("Opción inválida. Ingrese un número entre 1 y " + navesEspaciales.length); 
             opcion = scanner.nextInt();
         } if (opcion <= 3){
-            System.out.println("Genial, elegiste la nave número: " + opcion +".");
+            System.out.println("Genial, elegiste la nave número: " + navesEspaciales[opcion - 1]);
+            naveopcion = navesEspaciales[opcion - 1];
         }
         return opcion - 1;
    }
@@ -115,8 +116,8 @@ public class App {
                 default: System.out.println("Opcion no valida, intenta de nuevo.");
                     break;
             }    
-    }   
-
+    }
+    
     public static void monitoreador() { 
         System.out.println( "---Inicializando viaje---");
         Random random = new Random();
