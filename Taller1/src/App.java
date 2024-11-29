@@ -19,6 +19,7 @@ public class App {
     static int planetaopcion; //este indica la posicion del planeta seleccionado 
     static int saludNave = 100;
     static int escudos = 50;
+    static int combustible;
     
 
     public static void main(String[] args) throws Exception {
@@ -129,7 +130,7 @@ public class App {
                 System.out.println("Mitad del camino alcanzado");
             }
             if (random.nextInt(10) < 3) {
-                System.out.println("¡Evento inesperado! Gestionando ajustes...");
+                lluviaDeAsteroides();
             } 
             try { Thread.sleep(500);
             }catch(InterruptedException e){
@@ -166,7 +167,7 @@ public class App {
         
         saludNave -= dañoEstructura;
         escudos -= dañoEscudos;
-        int combustible = consumoCombustible;
+        combustible = consumoCombustible;
     
         System.out.println("Daño a la estructura: " + dañoEstructura);
         System.out.println("Daño a los escudos: " + dañoEscudos);
