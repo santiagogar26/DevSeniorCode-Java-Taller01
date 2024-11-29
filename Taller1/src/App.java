@@ -143,14 +143,15 @@ public class App {
 
     public static void calcularRecursos() {
 
-        double combustiblePorKilometro = 11_000;
+        double combustiblePorKilometro = 11;
         int alimentoPorDia = 3;
-        double kilometrosPorDia = 66_666;
+        double kilometrosPorDia = 6;
 
         double combustible = consumoCombustible[naveopcion];
         double oxigeno = distancias[planetaopcion] * 100;  //por cada millon de km, se necesita 100 unidades de oxigeno 
         double diasDeVuelo = distancias[planetaopcion] / kilometrosPorDia;
-        int comidaNecesaria = (int)Math.round(diasDeVuelo * alimentoPorDia);
+        long comidaNecesaria = Math.round(diasDeVuelo * alimentoPorDia);
+        System.out.println("Cuantos dias llevo en el viaje " + diasDeVuelo);
 
         System.out.println("La cantidad de unidades de combustible "+ combustible);
         System.out.println("La cantidad de unidades de oxigeno necesario es: " + oxigeno);
