@@ -7,14 +7,17 @@ public class App {
     static String[] planetas = {"Mercurio", "Venus", "Marte", "Jupiter", "Saturno"};
     static double[] distancias = {77.0, 61.0, 54.6, 965.0, 1256.0};
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
-    static double[] velocidades = {140, 110, 128};
-    static double[] consumoCombustible = {14000.0, 110000.0, 128000.0};
+    static double[] velocidades = {14000.0, 11000.0, 12800.0};
+    static double[] consumoCombustible = {140.0, 110.0, 128000.0}; //En millones de Kilometros
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
     static String opcionPlaneta;
     static String opcionNave;
 
-    static String naveopcion;
-    static int planetaSeleccionado; //este indica la posicion del planeta seleccionado 
+    static int naveopcion;// apunta a la posicion de la nava mas no al nombre 
+    static int planetaopcion; //este indica la posicion del planeta seleccionado 
+    static int saludNave = 100;
+    static int escudos = 50;
+    
 
     public static void main(String[] args) throws Exception {
 
@@ -91,31 +94,28 @@ public class App {
             opcion = scanner.nextInt();
         } if (opcion <= 3){
             System.out.println("Genial, elegiste la nave número: " + navesEspaciales[opcion - 1]);
-            naveopcion = navesEspaciales[opcion - 1];
+            naveopcion = opcion -1;
         }
-        return opcion - 1;
+        return opcion - 3;
    }
 
     public static void simularViaje() {
-        System.out.println("Elige una de estas opciones: ");
-        System.out.println("1. Elegir planeta");
-        System.out.println("2. Elegir Nave");
-        System.out.println("3. Calcular recursos");
-
-        int opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1:
-                    escogerPlaneta();
-                    break;
-                case 2:
-                    escogerNave();
-                    break;
-                case 3:
-                    break;
-
-                default: System.out.println("Opcion no valida, intenta de nuevo.");
-                    break;
-            }    
+        System.out.println("---Iniciando Viaje----");
+        Random random = new Random();
+        for (int progreso = 0; progreso <= 100; progreso+=10){
+            System.out.println("Progreso de tu viaje: " + progreso);    
+            if (progreso == 50) {
+                System.out.println("Mitad del camino alcanzado");
+            }
+            if (random.nextInt(10) < 3) {
+                System.out.println("¡Evento inesperado! Gestionando ajustes...");
+            } 
+            try { Thread.sleep(500);
+            }catch(InterruptedException e){
+                System.out.println("Error, imposible simular.");
+            }     
+        }
+        System.out.println("Llegaste a tu destino, magnifico!");
     }
     
     public static void monitoreador() { 
@@ -138,19 +138,44 @@ public class App {
     }
 
 
-    public static void calcularRecursos(int distancias) {
-        
-        double combustiblePorKilometro = 11_000;
-        int alimentoPorDia = 3;
-        int kilometrosPorDia = 66_666;
+    public static void calcularRecursos() {
 
-        double combustibleRequerido = distancias * combustiblePorKilometro;
-        int diasDeVuelo = distancias / kilometrosPorDia;
-        int comidaNecesaria = diasDeVuelo * alimentoPorDia;
+        double combustible = consumoCombustible[naveopcion];
+        double oxigeno = distancias[planetaopcion] * 100;  //por cada millon de km, se necesita 100 unidades de oxigeno 
+        System.out.println("La cantidad de unidades de oxigeno "+ combustible);
+        System.out.println("La cantidad de unidades de oxigeno necesario es: " + oxigeno);
 
-        System.out.println("Lo simulación del viaje fue: ");
-        System.out.println("La duración del viaje es de: " + diasDeVuelo + " días");
-        System.out.println("El combustible necesario es de: " + combustibleRequerido + " unidades");
-        System.out.println("La comida necesaria: " + comidaNecesaria + " raciones");
     }
+
+    public static void lluviaDeAsteroides() { {
+        System.out.println("¡Alerta! ¡Lluvia de asteroides detectada!");
+    
+        // Generar una intensidad aleatoria
+        int intensidad = random.nextInt(5) + 1; // Intensidad de 1 a 5
+        System.out.println("Intensidad de la lluvia: " + intensidad);
+    
+        // Simular daño a la nave
+        int dañoEstructura = intensidad * 10;
+        int dañoEscudos = intensidad * 5;
+        int consumoCombustible = intensidad * 20;
+    
+        // Aplicar el daño
+        saludNave -= dañoEstructura;
+        escudos -= dañoEscudos;
+        int combustible = consumoCombustible;
+    
+        System.out.println("Daño a la estructura: " + dañoEstructura);
+        System.out.println("Daño a los escudos: " + dañoEscudos);
+        System.out.println("Consumo de combustible: " + consumoCombustible);
+    
+        // Verificar si la nave ha sido destruida
+        if (saludNave <= 0) {
+            System.out.println("¡La nave ha sido destruida!");
+            // Terminar la simulación
+        }
+    }
+        
+    }
+
+
 }   
