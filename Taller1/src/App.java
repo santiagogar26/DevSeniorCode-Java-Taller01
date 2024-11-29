@@ -8,11 +8,12 @@ public class App {
     static double[] distancias = {77.0, 61.0, 54.6, 965.0, 1256.0};
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
     static double[] velocidades = {14000.0, 11000.0, 12800.0};
+    static double[] probabilidadLluvia = {99, 90, 100};
     static double[] consumoCombustible = {140.0, 110.0, 128000.0}; //En millones de Kilometros
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
     static String opcionPlaneta;
     static String opcionNave;
-
+    
     static int naveopcion;// apunta a la posicion de la nava mas no al nombre 
     static int planetaopcion; //este indica la posicion del planeta seleccionado 
     static int saludNave = 100;
@@ -107,10 +108,10 @@ public class App {
             if (progreso == 50) {
                 System.out.println("Mitad del camino alcanzado");
             }
-            if (random.nextInt(10) < 3) {
+            if (random.nextInt(20) < 3) {
                 System.out.println("¡Evento inesperado! Gestionando ajustes...");
             } 
-            if (random.nextInt(50) < 3 ) {
+            if (random.nextDouble()< probabilidadLluvia) {
                 lluviaDeAsteroides();
             }
             try { Thread.sleep(500);
