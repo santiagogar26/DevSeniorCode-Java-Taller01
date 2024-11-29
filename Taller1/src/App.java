@@ -8,7 +8,8 @@ public class App {
     static double[] distancias = {77.0, 61.0, 54.6, 965.0, 1256.0};
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
     static double[] velocidades = {14000.0, 11000.0, 12800.0};
-    static double[] probabilidadLluvia = {99, 90, 100};
+    static double[] probabilidadLuvia = {99, 90, 100};
+
     static double[] consumoCombustible = {140.0, 110.0, 128000.0}; //En millones de Kilometros
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
     static String opcionPlaneta;
@@ -34,7 +35,7 @@ public class App {
                     escogerNave();
                     break;
                 case 3:
-                    monitoreador();
+                    calcularRecursos();
                     break;
                 case 4:
                     simularViaje();
@@ -50,7 +51,7 @@ public class App {
         System.out.println("¡Bienvenido al menú, continua con los pasos!");
         System.out.println("1. Seleccione un planeta de destino");
         System.out.println("2. Seleccione la nave espacial ");
-        System.out.println("3. Monitoreo del viaje");
+        System.out.println("3. calcularRecursos");
         System.out.println("4. Simular un viaje");
         System.out.println("5. Salir");
         System.out.println("Elige una opción que prefieras");  
@@ -109,7 +110,7 @@ public class App {
                 System.out.println("Mitad del camino alcanzado");
             }
             if (random.nextInt(20) < 3) {
-                lluviaDeAsteroides();
+                System.out.println("¡Evento inesperado! Gestionando ajustes...");
             } 
             try { Thread.sleep(500);
             }catch(InterruptedException e){
@@ -143,13 +144,14 @@ public class App {
 
         double combustible = consumoCombustible[naveopcion];
         double oxigeno = distancias[planetaopcion] * 100;  //por cada millon de km, se necesita 100 unidades de oxigeno 
-        System.out.println("La cantidad de unidades de oxigeno "+ combustible);
+        System.out.println("La cantidad de unidades de combustible "+ combustible);
         System.out.println("La cantidad de unidades de oxigeno necesario es: " + oxigeno);
 
     }
 
     public static void lluviaDeAsteroides() { {
         System.out.println("¡Alerta! ¡Lluvia de asteroides detectada!");
+        Random random = new Random();
     
         // Generar una intensidad aleatoria
         int intensidad = random.nextInt(5) + 1; // Intensidad de 1 a 5
@@ -161,6 +163,7 @@ public class App {
         int consumoCombustible = intensidad * 20;
     
         // Aplicar el daño
+        
         saludNave -= dañoEstructura;
         escudos -= dañoEscudos;
         int combustible = consumoCombustible;
@@ -176,5 +179,7 @@ public class App {
         }
     }
         
-    
+    }
+
+
 }   
