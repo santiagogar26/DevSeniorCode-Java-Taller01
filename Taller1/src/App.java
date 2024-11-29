@@ -103,13 +103,16 @@ public class App {
         System.out.println("---Iniciando Viaje----");
         Random random = new Random();
         for (int progreso = 0; progreso <= 100; progreso+=10){
-            System.out.println("Progreso de tu viaje: " + progreso);    
+            System.out.println("Progreso de tu viaje: " + progreso);                           
             if (progreso == 50) {
                 System.out.println("Mitad del camino alcanzado");
             }
             if (random.nextInt(10) < 3) {
                 System.out.println("¡Evento inesperado! Gestionando ajustes...");
             } 
+            if (random.nextInt(50) < 3 ) {
+                lluviaDeAsteroides();
+            }
             try { Thread.sleep(500);
             }catch(InterruptedException e){
                 System.out.println("Error, imposible simular.");
