@@ -9,7 +9,6 @@ public class App {
     static String[] navesEspaciales = {"Voyager", "Vostok", "Atlantis"};
     static double[] velocidades = {14000.0, 11000.0, 12800.0};
     static double[] probabilidadLuvia = {99, 90, 100};
-
     static double[] consumoCombustible = {140.0, 110.0, 128000.0}; //En millones de Kilometros
     static double[] tiempoDeViaje = {147, 110, 128, 390, 17245};
     static String opcionPlaneta;
@@ -20,6 +19,7 @@ public class App {
     static int saludNave = 100;
     static int escudos = 50;
     static int combustible;
+    static int comidaNecesaria;
     
 
     public static void main(String[] args) throws Exception {
@@ -111,7 +111,7 @@ public class App {
                 System.out.println("Mitad del camino alcanzado");
             }
             if (random.nextInt(20) < 3) {
-                System.out.println("¡Evento inesperado! Gestionando ajustes...");
+                lluviaDeAsteroides();
             } 
             try { Thread.sleep(500);
             }catch(InterruptedException e){
@@ -143,10 +143,18 @@ public class App {
 
     public static void calcularRecursos() {
 
+        double combustiblePorKilometro = 11_000;
+        int alimentoPorDia = 3;
+        double kilometrosPorDia = 66_666;
+
         double combustible = consumoCombustible[naveopcion];
         double oxigeno = distancias[planetaopcion] * 100;  //por cada millon de km, se necesita 100 unidades de oxigeno 
+        double diasDeVuelo = distancias[planetaopcion] / kilometrosPorDia;
+        int comidaNecesaria = (int)Math.round(diasDeVuelo * alimentoPorDia);
+
         System.out.println("La cantidad de unidades de combustible "+ combustible);
         System.out.println("La cantidad de unidades de oxigeno necesario es: " + oxigeno);
+        System.out.println("La comida necesaria para este viaje es: " + comidaNecesaria);
 
     }
 
