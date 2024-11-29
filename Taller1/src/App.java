@@ -109,11 +109,8 @@ public class App {
                 System.out.println("Mitad del camino alcanzado");
             }
             if (random.nextInt(20) < 3) {
-                System.out.println("¡Evento inesperado! Gestionando ajustes...");
-            } 
-            if (random.nextDouble()< probabilidadLluvia) {
                 lluviaDeAsteroides();
-            }
+            } 
             try { Thread.sleep(500);
             }catch(InterruptedException e){
                 System.out.println("Error, imposible simular.");
@@ -179,7 +176,5 @@ public class App {
         }
     }
         
-    }
-
-
+    
 }   
